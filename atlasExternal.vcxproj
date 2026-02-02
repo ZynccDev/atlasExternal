@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Atlas|Win32">
+      <Configuration>Atlas</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Atlas|x64">
+      <Configuration>Atlas</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{4b91d23e-b49c-4ee5-85e5-c82424777e72}</ProjectGuid>
+    <RootNamespace>zncExternal</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>BASE</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Atlas|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Atlas|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Atlas|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Atlas|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Atlas|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4244;4267;4305;4018;4996;26495;6387</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Atlas|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <DisableSpecificWarnings>4244;4267;4305;4018;4996;26495;6387</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(SolutionDir)curl\include\curl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)Utilities\KeyAuth;$(SolutionDir)curl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;libcurl.lib;libcrypto.lib;library_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <MASM Include="Memory\Luck.asm">
+      <FileType>Document</FileType>
+    </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Memory\MemoryManager.cpp" />
+    <ClCompile Include="OverlayHook\imgui\imgui.cpp" />
+    <ClCompile Include="OverlayHook\imgui\imgui_draw.cpp" />
+    <ClCompile Include="OverlayHook\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="OverlayHook\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="OverlayHook\imgui\imgui_tables.cpp" />
+    <ClCompile Include="OverlayHook\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="oxorany\oxorany.cpp" />
+    <ClCompile Include="RPC\Discord-SDK\src\connection_win.cpp" />
+    <ClCompile Include="RPC\Discord-SDK\src\discord_register_win.cpp" />
+    <ClCompile Include="RPC\Discord-SDK\src\discord_rpc.cpp" />
+    <ClCompile Include="RPC\Discord-SDK\src\dllmain.cpp" />
+    <ClCompile Include="RPC\Discord-SDK\src\rpc_connection.cpp" />
+    <ClCompile Include="RPC\Discord-SDK\src\serialization.cpp" />
+    <ClCompile Include="Utilities\KeyAuth\KeyAuth.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="curl\include\curl\curl.h" />
+    <ClInclude Include="curl\include\curl\curlver.h" />
+    <ClInclude Include="curl\include\curl\easy.h" />
+    <ClInclude Include="curl\include\curl\header.h" />
+    <ClInclude Include="curl\include\curl\mprintf.h" />
+    <ClInclude Include="curl\include\curl\multi.h" />
+    <ClInclude Include="curl\include\curl\options.h" />
+    <ClInclude Include="curl\include\curl\stdcheaders.h" />
+    <ClInclude Include="curl\include\curl\system.h" />
+    <ClInclude Include="curl\include\curl\typecheck-gcc.h" />
+    <ClInclude Include="curl\include\curl\urlapi.h" />
+    <ClInclude Include="curl\include\curl\websockets.h" />
+    <ClInclude Include="curl\include\zconf.h" />
+    <ClInclude Include="curl\include\zlib.h" />
+    <ClInclude Include="Hacks\Arsenal\rapidfire.h" />
+    <ClInclude Include="Hacks\hitbox.h" />
+    <ClInclude Include="Hacks\movement.h" />
+    <ClInclude Include="OverlayHook\imgui\imconfig.h" />
+    <ClInclude Include="OverlayHook\imgui\imgui.h" />
+    <ClInclude Include="OverlayHook\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="OverlayHook\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="OverlayHook\imgui\imgui_internal.h" />
+    <ClInclude Include="OverlayHook\imgui\imgui_settings.h" />
+    <ClInclude Include="OverlayHook\imgui\imstb_rectpack.h" />
+    <ClInclude Include="OverlayHook\imgui\imstb_textedit.h" />
+    <ClInclude Include="OverlayHook\imgui\imstb_truetype.h" />
+    <ClInclude Include="OverlayHook\imgui\KeyBind.h" />
+    <ClInclude Include="OverlayHook\imgui\stb_image.h" />
+    <ClInclude Include="oxorany\oxorany.h" />
+    <ClInclude Include="oxorany\oxorany_include.h" />
+    <ClInclude Include="RBX\PlayerCache.h" />
+    <ClInclude Include="RBX\PlayerObjectsCache.h" />
+    <ClInclude Include="RBX\TPHandler.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Hacks\aimbot.h" />
+    <ClInclude Include="Hacks\esp.h" />
+    <ClInclude Include="Hacks\misc.h" />
+    <ClInclude Include="Memory\MemoryManager.h" />
+    <ClInclude Include="nlohmann\json.hpp" />
+    <ClInclude Include="nlohmann\json_fwd.hpp" />
+    <ClInclude Include="Offsets\Offsets.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="OverlayHook\font\font.h" />
+    <ClInclude Include="OverlayHook\OverlayHook.h" />
+    <ClInclude Include="OverlayHook\W2S.h" />
+    <ClInclude Include="RPC\Discord-SDK\include\discord_register.h" />
+    <ClInclude Include="RPC\Discord-SDK\include\discord_rpc.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\backoff.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\connection.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\msg_queue.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\allocators.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\document.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\encodedstream.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\encodings.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\error\en.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\error\error.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\filereadstream.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\filewritestream.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\fwd.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\itoa.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\meta.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\pow10.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\regex.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\stack.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\strtod.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\internal\swap.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\memorybuffer.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\memorystream.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\pointer.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\prettywriter.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\rapidjson.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\reader.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\schema.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\stream.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\stringbuffer.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rapidjson\writer.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\rpc_connection.h" />
+    <ClInclude Include="RPC\Discord-SDK\src\serialization.h" />
+    <ClInclude Include="RPC\Discord.h" />
+    <ClInclude Include="SDK\SDK.h" />
+    <ClInclude Include="Misc\Colours.h" />
+    <ClInclude Include="Misc\Configs.h" />
+    <ClInclude Include="Misc\Console.h" />
+    <ClInclude Include="Misc\Structures.h" />
+    <ClInclude Include="Utilities\KeyAuth\auth.hpp" />
+    <ClInclude Include="Utilities\KeyAuth\KeyAuth.h" />
+    <ClInclude Include="Utilities\KeyAuth\skStr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RPC\Discord-SDK\.clang-format" />
+    <None Include="RPC\Discord-SDK\.gitignore" />
+    <None Include="RPC\Discord-SDK\.travis.yml" />
+    <None Include="RPC\Discord-SDK\appveyor.yml" />
+    <None Include="RPC\Discord-SDK\build.py" />
+    <None Include="RPC\Discord-SDK\LICENSE" />
+    <None Include="RPC\Discord-SDK\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="RPC\Discord-SDK\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="curl\lib\libcrypto.lib" />
+    <Library Include="curl\lib\libcurl.lib" />
+    <Library Include="curl\lib\zlib.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>
