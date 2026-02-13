@@ -73,10 +73,10 @@ inline void Desync()
 	{
 		uintptr_t base = (uintptr_t)GetModuleHandleA("RobloxPlayerBeta.exe");
 		//BYTE val = Memory->read<BYTE>(base + offsets::fastflags::NextGenReplicatorEnabledWrite4);
-		if (Options::Misc::Noclip)
-			val &= ~0x08;
-		else
-			val |= 0x08;
+		//if (Options::Misc::Noclip)
+			//val &= ~0x08;
+		//else
+			//val |= 0x08;
 		//Memory->write<BYTE>(base + offsets::fastflags::NextGenReplicatorEnabledWrite4, val);
 	}
 }
